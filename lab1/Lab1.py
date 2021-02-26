@@ -1,7 +1,8 @@
 import numpy as np
 import math
+import random
 array_x = np.random.randint(1, 21, (8,3))  #заповнюємо матрицю планування випадковими числами від 1 до 20 включно
-a_0, a_1, a_2, a_3 = 1, 3, 5, 7
+a_0, a_1, a_2, a_3 = random.randint(5, 25), random.randint(5, 25), random.randint(5, 25), random.randint(5, 25) #коефіцієнти а в межах від 5 до 25
 min_xi = np.amin(array_x, axis=0)  #знаходимо Хmin
 max_xi = np.amax(array_x, axis=0)   #знаходимо Хmax
 b = np.concatenate((array_x, np.zeros([2, 3])))
