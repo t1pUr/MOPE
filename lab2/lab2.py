@@ -114,5 +114,9 @@ if __name__ == '__main__':
     X1_range = [-30, 20]
     X2_range = [15, 50]
     Y_range = [Y_min, Y_max]
-    res = Two_factor(X1_range, X2_range, Y_range, m)
-    res.check_results()
+
+    try:
+        res = Two_factor(X1_range, X2_range, Y_range, m)
+        res.check_results()
+    except KeyError:
+        print("m більше ніж 10")
