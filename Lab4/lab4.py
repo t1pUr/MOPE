@@ -115,17 +115,31 @@ def student(m, dispersion, y_aver, x_norm, x_natur, b_coef):
     f3 = (m - 1) * n
     qq = (1 + 0.95) / 2
     t_table = t.ppf(df=f3, q=qq)
-
+    counter = 0
     b_impor = []
     for i in range(k):
+
         if t_t[i] > t_table:
+            counter += 1
             b_impor.append(b_coef[i])
+
         else:
             b_impor.append(0)
+
+    if (counter == 1):
+        m += 1
+        linear_matrix(m, n) #починаємо з початку
+
     print("Незначні коефіцієнти регресії")
+
+
     for i in range(k):
         if b_coef[i] not in b_impor:
             print("b{0} = {1:.2f}".format(i, b_coef[i]))
+
+
+
+
 
     if flag:
         y_impor = [b_impor[0] + b_impor[1] * x_norm[i][1] + b_impor[2] * x_norm[i][2] + b_impor[3] * x_norm[i][3] +
