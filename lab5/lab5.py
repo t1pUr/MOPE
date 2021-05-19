@@ -3,6 +3,7 @@ import sklearn.linear_model as lm
 from scipy.stats import f, t
 from math import sqrt
 from pyDOE2 import *
+from datetime import datetime
 
 x_range = [(-2, 5), (0, 3), (-9, 10)]
 xcp_min = round(sum([x_range[i][0] for i in range(len(x_range))]) / 3)
@@ -150,11 +151,17 @@ def student(m, dispersion, y_aver, x_norm, b):
         y_impor.append(regression([x_norm[j][i] for i in range(len(t_t))], b_impor))
 
     print("Значення функції відгуку зі значущими коефіцієнтами\n", [round(elem, 3) for elem in y_impor])
+
     fisher(m, y_aver, b_impor, y_impor, sb)
+
 
 # ----------------------- Критерій Фішера --------------------------------
 def fisher(m, y_aver, b_impor, y_impor, sb):
+    start_time = datetime.now()
     print("\nКритерій Фішера")
+
+
+
     d = 0
     for i in b_impor:
         if i:
@@ -165,12 +172,16 @@ def fisher(m, y_aver, b_impor, y_impor, sb):
     Fp = s_ad / sb
     Ft = f.ppf(dfn=f4, dfd=f3, q=1 - 0.05)
 
+
     if Fp < Ft:
         print("Fp < Ft => {0:.2f} < {1}".format(Fp, Ft))
         print("Отримана математична модель при рівні значимості 0.05 адекватна експериментальним даним")
     else:
         print("Fp > Ft => {0:.2f} > {1}".format(Fp, Ft))
         print("Рівняння регресії неадекватно оригіналу при рівні значимості 0.05")
+    end_time = datetime.now()
+    print('Duration: {}'.format(end_time - start_time))
+
 
 
 if __name__ == '__main__':
