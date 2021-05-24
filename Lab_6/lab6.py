@@ -229,6 +229,12 @@ while not adekvat:
 
     print("Критерій Фішера")
     d = 11 - student_lst.count(0)
+    
+    
+    if (d == 1):
+        m += 1
+        adekvat = False
+    
     if fisher_test():
         print("Рівняння регресії адекватне  оригіналу")
         adekvat = True
